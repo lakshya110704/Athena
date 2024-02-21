@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="index.html"> 
+     
+    <style>
+        .header {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .user-mode {
+            margin-right: 10px;
+        }
+        .language-mode {
+            margin-right: 950px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="user-mode">
+            <label for="user-mode">User Mode:</label>
+            <select id="user-mode">
+                <option value="multiuser">Multi User Mode</option>
+                <option value="singleuser">Single User Mode</option>
+            </select>
+        </div>
+        <div class="language-mode">
+            <label for="language-mode">Languages:</label>
+            <select id="language-mode">
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+            </select>
+        </div>
+        <div>
+            <a href="signin.html" id="signin">Sign In</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="left-container">
+                <!-- Left container content goes here -->
+            </div>
+            <div class="right-container">
+                <div class="chatbot-container" id="chatbot-container">
+                    <!-- Chatbot messages will be displayed here -->
+                </div>
+                <div class="input-container">
+                    <input type="text" id="user-input" placeholder="Type your message here...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your JavaScript code goes here -->
+    <script src="moh.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
