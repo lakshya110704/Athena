@@ -24,42 +24,66 @@
 </head>
 <body>
     <div class="header">
-        <div class="user-mode">
-            <label for="user-mode">User Mode:</label>
-            <select id="user-mode">
-                <option value="multiuser">Multi User Mode</option>
-                <option value="singleuser">Single User Mode</option>
-            </select>
-        </div>
-        <div class="language-mode">
-            <label for="language-mode">Languages:</label>
-            <select id="language-mode">
-                <option value="english">English</option>
-                <option value="hindi">Hindi</option>
-            </select>
-        </div>
-        <div>
-            <a href="signin.html" id="signin">Sign In</a>
-        </div>
+        <div class="title">ATHENA</div>
+        <div class="signin"><a href="signin.html" id="signin">Sign In</a></div>
     </div>
+    
     <div class="container">
-        <div class="content">
-            <div class="left-container">
-                <!-- Left container content goes here -->
+        <div class="sidebar">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <div class="icon-bar">
+              <a class="active" href="#"><i class="fa fa-home"></i></a>
+              <div id="language-icon">
+              <a href="#"><i class="fa fa-users"></i></a>
+              <div class="dropdown-content" id="language-dropdown">
+                <a href="#">Single</a>
+                <a href="#">Multi</a>
+              </div></div>
+              <div id="users-icon">
+              <a href="#"><i class="fa fa-language"></i></a>
+              <div class="dropdown-content" id="users-dropdown">
+                <a href="#">Hindi</a>
+                <a href="#">English</a>
+              </div></div>
+              <div id="file-icon">
+              <a href="#"><i class="fa fa-file"></i></a>
+              <div class="dropdown-content" id="file-dropdown">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>
+                <a href="https://react.dev/reference/react">React</a>
+                <a href="https://nodejs.org/docs/latest/api/">Node</a>
+                <a href="https://docs.npmjs.com/">NPM</a>
+                <a href="https://mongoosejs.com/docs/guide.html">Mongoose</a>
+                <a href="https://expressjs.com/">Express</a>
+                <a href="https://nextjs.org/docs">Next</a>
+                <a href="https://axios-http.com/docs/intro">Axios</a>
+                <a href="https://tailwindcss.com/docs">Tailwind CSS</a>
+                <a href="https://vitejs.dev/guide/">Vite</a>
             </div>
-            <div class="right-container">
-                <div class="chatbot-container" id="chatbot-container">
-                    <!-- Chatbot messages will be displayed here -->
-                </div>
-                <div class="input-container">
-                    <input type="text" id="user-input" placeholder="Type your message here...">
-                    <button id="send-btn">Send</button>
+              <a href="#"><i class="fa fa-doc"></i></a>
+              <a href="#"><i class="fa fa-doc"></i></a>
+              <a href="#"><i class="fa fa-doc"></i></a>
+              <a href="#"><i class="fa fa-doc"></i></a>
+              <a href="./notes.html"><i class="fa fa-clipboard"></i></a>
+              <a href="./info.html"><i class="fa fa-info"></i></a>
+              </div></div></div>
+        
+              <div class="content-container">
+                <div class="right-container">
+                    <div class="chatbot-container" id="chatbot-container">
+                        <!-- Chatbot messages will be displayed here -->
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="user-input" placeholder="Type your message here...">
+                        <button id="send-btn">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Your JavaScript code goes here -->
-    <script src="moh.js"></script> <!-- Link to your JavaScript file -->
+    <script src="js.js"></script> 
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    
 </body>
 </html>

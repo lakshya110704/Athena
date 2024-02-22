@@ -9,7 +9,7 @@ body {
 }
 
 .signin-form {
-    width: 300px;
+    width: 350px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -23,11 +23,11 @@ body {
 
 .signin-form input[type="text"],
 .signin-form input[type="password"] {
-    width: 100%;
-    padding: 10px;
+    width: 80%;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    height: 50px;
 }
 
 .signin-form button {
