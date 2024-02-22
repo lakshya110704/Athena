@@ -9,16 +9,23 @@
     <style>
         .header {
             display: flex;
-            justify-content: start;
+            justify-content: left;
             align-items: center;
         }
         .user-mode {
             margin-right: 10px;
         }
         .language-mode {
-            margin-right: 950px;
+            margin-right: 90px;
         }
-        
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .signin {
+            margin-left: 1000px;
+        }
         
     </style>
 </head>
@@ -73,6 +80,26 @@
                     <div class="chatbot-container" id="chatbot-container">
                         <!-- Chatbot messages will be displayed here -->
                     </div>
+                    <script>
+                        // Make a GET request to the API endpoint
+                        fetch('http://127.0.0.1:5000')
+                            .then(response => {
+                                // Check if the response is successful
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                // Parse the JSON response
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Update the webpage content with the API response
+                                document.getElementById('apiData').textContent = JSON.stringify(data);
+                            })
+                            .catch(error => {
+                                // Handle any errors
+                                console.error('There was a problem with the fetch operation:', error);
+                            });
+                    </script>
                     <div class="input-container">
                         <input type="text" id="user-input" placeholder="Type your message here...">
                         <button id="send-btn">Send</button>
