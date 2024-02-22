@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+HEAD
 function addLink() {
     var linkContainer = document.getElementById('linkContainer');
     var newLink = document.createElement('a');
@@ -6,7 +6,7 @@ function addLink() {
     newLink.textContent = 'New Link';
     linkContainer.appendChild(newLink);
 }
-=======
+
 function saveNote() {
     var noteInput = document.getElementById('noteInput');
     var noteText = noteInput.value.trim();
@@ -42,4 +42,3 @@ function loadNotes() {
 }
 
 loadNotes();
->>>>>>> refs/remotes/origin/main
