@@ -1,11 +1,17 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from flask import Flask, request, jsonify
+from trained import stoi, itos, Block, block_size, vocab_size
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-from train import Block, block_size, stoi, itos, vocab_size
+# Define the encode and decode functions
+def encode(s):
+    return [stoi[c] for c in s]
 
-# Define your model architecture and any necessary functions
+def decode(l):
+    return ''.join([itos[i] for i in l])
+
+# Load the trained language model
 class BigramLanguageModel(nn.Module):
     def __init__(self, vocab_size, n_embd=64, n_head=4, n_layer=4, block_size=32):
         super().__init__()
@@ -44,39 +50,24 @@ class BigramLanguageModel(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
         return idx
 
-# Define Flask app
-app = Flask(__name__)
+# Load the trained model state dictionary
+model = BigramLanguageModel(vocab_size)
+model.load_state_dict(torch.load('/Users/lakshya/Desktop/Projects/LLM/generated_text.txt'))
+model.eval()
 
-# Function to encode and decode input/output
-def encode(s):
-    return [stoi[c] for c in s]
+# Function to generate response
+def generate_response(user_input, max_tokens=50):
+    encoded_input = torch.tensor([encode(user_input)], device=device)
+    generated_sequence = model.generate(encoded_input, max_tokens)
+    generated_text = decode(generated_sequence[0].tolist())
+    return generated_text
 
-def decode(l):
-    return ''.join([itos[i] for i in l])
-
-# Define API endpoint for generating response
-@app.route('/generate_response', methods=['POST'])
-def generate_response():
-    try:
-        user_input = request.json['user_input']
-        max_tokens = request.json.get('max_tokens', 50)  # Default max tokens if not provided
-        encoded_input = torch.tensor([encode(user_input)], device=device)
-        generated_sequence = model.generate(encoded_input, max_tokens)
-        generated_text = decode(generated_sequence[0].tolist())
-        return jsonify({'response': generated_text}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-if __name__ == '__main__':
-    # Assuming necessary imports and definitions
-    # Define paths and device
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    MODEL_PATH = '/path/to/your/model.pth'
-    # Load vocabulary, model, and other necessary definitions
-    model = BigramLanguageModel(vocab_size)
-    model.load_state_dict(torch.load(MODEL_PATH))
-    model.eval()
-    app.run(host=8000)
-    app.run(debug=True)
-    
-
+# Main interaction loop
+print("Welcome to the Chatbot! Type 'exit' to end the conversation.")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'exit':
+        print("Chatbot: Goodbye!")
+        break
+    response = generate_response(user_input)
+    print("Chatbot:", response)

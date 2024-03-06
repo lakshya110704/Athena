@@ -42,3 +42,32 @@ function loadNotes() {
 }
 
 loadNotes();
+
+function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    if (userInput.trim() === "") return;
+    
+    // Make POST request to your API
+    fetch("/generate_response", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_input: userInput
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update chat box with response
+        var chatBox = document.getElementById("chat-box");
+        chatBox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+        chatBox.innerHTML += `<p><strong>Chatbot:</strong> ${data.response}</p>`;
+        // Clear input field
+        document.getElementById("user-input").value = "";
+        // Scroll to bottom of chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(error => console.error("Error:", error));
+}
+

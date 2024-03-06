@@ -32,7 +32,7 @@
 <body>
     <div class="header">
         <div class="title">ATHENA</div>
-        <div class="signin"><a href="signin.html" id="signin">Sign In</a></div>
+        <div class="signin"><a href="signin.html" id="signin"> Sign In</a></div>
     </div>
     
     <div class="container">
@@ -80,9 +80,15 @@
                     <div class="chatbot-container" id="chatbot-container">
                         <!-- Chatbot messages will be displayed here -->
                     </div>
+                    
+                    <div class="input-container">
+                        <input type="text" id="user-input" placeholder="Type your message here...">
+                        <button id="send-btn">Send</button>
+                    </div>
+
                     <script>
                         // Make a GET request to the API endpoint
-                        fetch('http://127.0.0.1:5000')
+                        fetch('http://127.0.0.1:8000')
                             .then(response => {
                                 // Check if the response is successful
                                 if (!response.ok) {
@@ -100,10 +106,6 @@
                                 console.error('There was a problem with the fetch operation:', error);
                             });
                     </script>
-                    <div class="input-container">
-                        <input type="text" id="user-input" placeholder="Type your message here...">
-                        <button id="send-btn">Send</button>
-                    </div>
                 </div>
             </div>
         </div>
